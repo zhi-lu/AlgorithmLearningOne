@@ -48,6 +48,9 @@ public:
 
     // 复习相关的知识
     [[maybe_unused]] static std::string reviewThree(const std::string &string);
+
+    // 学习STL中基本vector
+    [[maybe_unused]] static void reviewFour();
 };
 
 int main() {
@@ -56,6 +59,8 @@ int main() {
     BasicReview::reviewTwo();
     std::cout << "对字符串未进行reverse操作之前输出:" << string << std::endl;
     std::cout << "对字符串进行相关的reverse后的结果为:" << BasicReview::reviewThree(string) << std::endl;
+    std::cout << "<===============================================================================>" << std::endl;
+    BasicReview::reviewFour();
     return 0;
 }
 
@@ -101,3 +106,25 @@ int main() {
 }
 
 #pragma clang diagnostic pop
+
+[[maybe_unused]] void BasicReview::reviewFour() {
+
+    // 定义一个迭代器 vector
+    std::vector<int> vector;
+    // 开辟的空间capacity (容器预留空间)为10,但现在不能用[]访问
+    vector.reserve(10);
+    // 往vector 的 capacity 填充10个元素
+    for (int i = 0; i < 10; ++i) {
+        vector.push_back(i);
+    }
+    std::cout << "现在vector中有:" << vector.size() << "元素" << std::endl;
+    // 清理vector 空间的所有元素.
+    vector.clear();
+    std::cout << "现在vector中有:" << vector.size() << "元素" << std::endl;
+    // 在空间中占有的空间为 20
+    vector.resize(20);
+    // 如果是int型未定义赋值默认的值为0,如果是 char型则为定义赋值则默认值为: '/0'
+    std::cout << "输出vector[10]的值:" << vector[10] << std::endl;
+    vector[10] = 10;
+    std::cout << "输出定义后的vector[10]的值:" << vector[10] << std::endl;
+}
